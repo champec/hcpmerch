@@ -1,0 +1,40 @@
+{% comment %}
+  Renders the main collection product grid
+{% endcomment %}
+
+<div class="collection-grid">
+  <div class="collection-grid__wrapper">
+    {% paginate collection.products by 12 %}
+      <div class="collection-grid__items">
+        {% for product in collection.products %}
+          <div class="collection-grid__item">
+            {% render 'product-card', product: product %}
+          </div>
+        {% endfor %}
+      </div>
+
+      {% if paginate.pages > 1 %}
+        <div class="pagination">
+          {{ paginate | default_pagination }}
+        </div>
+      {% endif %}
+    {% endpaginate %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Collection product grid",
+  "settings": [
+    {
+      "type": "range",
+      "id": "products_per_page",
+      "min": 8,
+      "max": 50,
+      "step": 1,
+      "default": 16,
+      "label": "Products per page"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,62 @@
+{
+  "general": {
+    "continue_shopping": "Continue shopping",
+    "accessibility": {
+      "skip_to_text": "Skip to content",
+      "refresh_page": "Choosing a selection results in a full page refresh."
+    }
+  },
+  "sections": {
+    "header": {
+      "menu": "Menu"
+    },
+    "footer": {
+      "newsletter_title": "Subscribe to our newsletter",
+      "newsletter_placeholder": "Email address",
+      "newsletter_button": "Subscribe",
+      "all_rights_reserved": "All rights reserved"
+    },
+    "cart": {
+      "title": "Your cart",
+      "empty": "Your cart is currently empty.",
+      "remove": "Remove",
+      "update": "Update cart",
+      "checkout": "Check out",
+      "subtotal": "Subtotal",
+      "cart_error": "There was an error while updating your cart. Please try again.",
+      "cart_quantity_error_html": "You can only add [quantity] of this item to your cart."
+    },
+    "featured_collection": {
+      "view_all": "View all"
+    },
+    "404": {
+      "title": "Page not found",
+      "subtext": "The page you requested does not exist.",
+      "link": "Continue shopping"
+    },
+    "list_collections": {
+      "title": "Collections",
+      "products": "products"
+    }
+  },
+  "products": {
+    "product": {
+      "add_to_cart": "Add to cart",
+      "sold_out": "Sold out",
+      "unavailable": "Unavailable",
+      "quantity": "Quantity",
+      "price": {
+        "from_price_html": "From {{ price }}",
+        "regular_price": "Regular price",
+        "sale_price": "Sale price"
+      }
+    }
+  },
+  "accessibility": {
+    "skip_to_text": "Skip to content",
+    "refresh_page": "Choosing a selection results in a full page refresh.",
+    "link_messages": {
+      "new_window": "Opens in a new window."
+    }
+  }
+}

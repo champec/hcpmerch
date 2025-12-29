@@ -1,0 +1,18 @@
+{
+  "current": {
+    "color_primary": "#1a1a1a",
+    "color_secondary": "#ffffff",
+    "color_accent": "#2a7fff",
+    "sections": {
+      "header": {
+        "type": "header",
+        "settings": {}
+      },
+      "footer": {
+        "type": "footer",
+        "settings": {}
+      }
+    },
+    "content_for_index": []
+  }
+}

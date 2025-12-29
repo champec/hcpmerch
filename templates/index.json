@@ -1,0 +1,17 @@
+{
+  "sections": {
+    "image_banner": {
+      "type": "image-banner",
+      "settings": {
+        "heading": "Welcome to HCP Merch"
+      }
+    },
+    "featured_collection": {
+      "type": "featured-collection",
+      "settings": {
+        "heading": "Featured products"
+      }
+    }
+  },
+  "order": ["image_banner", "featured_collection"]
+}

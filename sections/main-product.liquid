@@ -1,0 +1,108 @@
+{% comment %}
+  Renders the main product section
+{% endcomment %}
+
+<div class="product" itemscope itemtype="http://schema.org/Product">
+  <div class="product__wrapper">
+    <div class="product__media">
+      {% if product.featured_media %}
+        <img src="{{ product.featured_media | img_url: 'large' }}" alt="{{ product.featured_media.alt | escape }}" loading="lazy">
+      {% endif %}
+    </div>
+
+    <div class="product__info">
+      {% for block in section.blocks %}
+        {% case block.type %}
+          {% when 'title' %}
+            <h1 class="product__title" itemprop="name">{{ product.title }}</h1>
+
+          {% when 'price' %}
+            <div class="product__price" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+              <span itemprop="price" content="{{ product.selected_or_first_available_variant.price | money_without_currency }}">
+                {{ product.selected_or_first_available_variant.price | money }}
+              </span>
+              <meta itemprop="priceCurrency" content="{{ cart.currency.iso_code }}">
+            </div>
+
+          {% when 'variant_picker' %}
+            {% unless product.has_only_default_variant %}
+              <variant-selects class="product__variants">
+                {% for option in product.options_with_values %}
+                  <div class="product__option">
+                    <label for="Option-{{ section.id }}-{{ forloop.index0 }}">
+                      {{ option.name }}
+                    </label>
+                    <select 
+                      id="Option-{{ section.id }}-{{ forloop.index0 }}"
+                      name="options[{{ option.name | escape }}]"
+                    >
+                      {% for value in option.values %}
+                        <option value="{{ value | escape }}">
+                          {{ value }}
+                        </option>
+                      {% endfor %}
+                    </select>
+                  </div>
+                {% endfor %}
+              </variant-selects>
+            {% endunless %}
+
+          {% when 'buy_buttons' %}
+            <div class="product__buttons">
+              {% form 'product', product %}
+                <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+                <button type="submit" name="add" class="product__add-button">
+                  {% if product.available %}
+                    {{ 'products.product.add_to_cart' | t }}
+                  {% else %}
+                    {{ 'products.product.sold_out' | t }}
+                  {% endif %}
+                </button>
+              {% endform %}
+            </div>
+
+          {% when 'description' %}
+            {% if product.description != blank %}
+              <div class="product__description" itemprop="description">
+                {{ product.description }}
+              </div>
+            {% endif %}
+        {% endcase %}
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Product information",
+  "tag": "section",
+  "class": "section",
+  "blocks": [
+    {
+      "type": "title",
+      "name": "Title",
+      "limit": 1
+    },
+    {
+      "type": "price",
+      "name": "Price",
+      "limit": 1
+    },
+    {
+      "type": "variant_picker",
+      "name": "Variant picker",
+      "limit": 1
+    },
+    {
+      "type": "buy_buttons",
+      "name": "Buy buttons",
+      "limit": 1
+    },
+    {
+      "type": "description",
+      "name": "Description"
+    }
+  ]
+}
+{% endschema %}

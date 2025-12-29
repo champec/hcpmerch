@@ -1,0 +1,71 @@
+{% comment %}
+  Renders the main cart
+{% endcomment %}
+
+<div class="cart">
+  <h1>{{ 'sections.cart.title' | t }}</h1>
+
+  <form action="{{ routes.cart_url }}" method="post" novalidate class="cart__form">
+    {% if cart.item_count > 0 %}
+      <div class="cart__items">
+        {% for item in cart.items %}
+          <div class="cart__item">
+            <div class="cart__item-image">
+              {% if item.image %}
+                <img src="{{ item.image | img_url: 'medium' }}" alt="{{ item.image.alt | escape }}" loading="lazy">
+              {% endif %}
+            </div>
+
+            <div class="cart__item-details">
+              <a href="{{ item.url }}">{{ item.product.title }}</a>
+              {% unless item.product.has_only_default_variant %}
+                <p>{{ item.variant.title }}</p>
+              {% endunless %}
+              <p>{{ item.final_price | money }}</p>
+            </div>
+
+            <div class="cart__item-quantity">
+              <input 
+                type="number" 
+                name="updates[]" 
+                id="updates_{{ item.key }}" 
+                value="{{ item.quantity }}" 
+                min="0"
+              >
+            </div>
+
+            <div class="cart__item-total">
+              {{ item.final_line_price | money }}
+            </div>
+
+            <a href="{{ routes.cart_change_url }}?line={{ forloop.index }}&quantity=0" class="cart__item-remove">
+              {{ 'sections.cart.remove' | t }}
+            </a>
+          </div>
+        {% endfor %}
+      </div>
+
+      <div class="cart__footer">
+        <div class="cart__total">
+          <p>{{ 'sections.cart.subtotal' | t }}: <strong>{{ cart.total_price | money }}</strong></p>
+        </div>
+        <button type="submit" name="update" class="cart__update">
+          {{ 'sections.cart.update' | t }}
+        </button>
+        <button type="submit" name="checkout" class="cart__checkout">
+          {{ 'sections.cart.checkout' | t }}
+        </button>
+      </div>
+    {% else %}
+      <p>{{ 'sections.cart.empty' | t }}</p>
+      <a href="{{ routes.all_products_collection_url }}">{{ 'general.continue_shopping' | t }}</a>
+    {% endif %}
+  </form>
+</div>
+
+{% schema %}
+{
+  "name": "Cart",
+  "settings": []
+}
+{% endschema %}

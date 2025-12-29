@@ -1,0 +1,28 @@
+{% comment %}
+  Renders a list of all collections
+{% endcomment %}
+
+<div class="list-collections">
+  <h1>{{ 'sections.list_collections.title' | t }}</h1>
+  
+  <div class="list-collections__grid">
+    {% for collection in collections %}
+      <div class="list-collections__item">
+        <a href="{{ collection.url }}">
+          {% if collection.featured_image %}
+            <img src="{{ collection.featured_image | img_url: 'medium' }}" alt="{{ collection.title | escape }}" loading="lazy">
+          {% endif %}
+          <h3>{{ collection.title }}</h3>
+          <p>{{ collection.products_count }} {{ 'sections.list_collections.products' | t }}</p>
+        </a>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Collections list",
+  "settings": []
+}
+{% endschema %}

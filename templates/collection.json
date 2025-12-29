@@ -1,0 +1,15 @@
+{{% section 'main-collection-banner' %}
+
+
+
+
+
+
+
+
+
+
+}  "order": ["main"]  },    }      }      "settings": {      "type": "main-collection-product-grid",    "main": {  "sections": {
+<div class="collection">
+  {% section 'collection-products' %}
+</div>

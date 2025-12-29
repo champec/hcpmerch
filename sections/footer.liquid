@@ -1,0 +1,51 @@
+{% comment %}
+  Renders the footer section
+{% endcomment %}
+
+<footer class="footer">
+  <div class="footer__wrapper">
+    <div class="footer__content">
+      {% if section.settings.show_newsletter %}
+        <div class="footer__newsletter">
+          <h3>{{ 'sections.footer.newsletter_title' | t }}</h3>
+          {% form 'customer' %}
+            <input type="email" name="contact[email]" placeholder="{{ 'sections.footer.newsletter_placeholder' | t }}">
+            <button type="submit">{{ 'sections.footer.newsletter_button' | t }}</button>
+          {% endform %}
+        </div>
+      {% endif %}
+
+      <div class="footer__menu">
+        {% for link in section.settings.menu.links %}
+          <a href="{{ link.url }}" class="footer__link">
+            {{ link.title }}
+          </a>
+        {% endfor %}
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <p>&copy; {{ 'now' | date: '%Y' }} {{ shop.name }}. {{ 'sections.footer.all_rights_reserved' | t }}</p>
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_newsletter",
+      "label": "Show newsletter signup",
+      "default": true
+    },
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Footer menu",
+      "default": "footer"
+    }
+  ]
+}
+{% endschema %}

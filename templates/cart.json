@@ -1,0 +1,13 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-cart",
+      "settings": {}
+    },
+    "cart-footer": {
+      "type": "cart-footer",
+      "settings": {}
+    }
+  },
+  "order": ["main", "cart-footer"]
+}

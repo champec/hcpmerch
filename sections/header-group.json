@@ -1,0 +1,9 @@
+{
+  "sections": {
+    "header": {
+      "type": "header",
+      "name": "Header",
+      "settings": {}
+    }
+  }
+}
