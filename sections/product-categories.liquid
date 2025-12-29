@@ -1,0 +1,110 @@
+{% comment %}
+  Renders product categories for POD items
+{% endcomment %}
+
+<div class="product-categories">
+  <div class="product-categories__wrapper">
+    {% if section.settings.heading != blank %}
+      <h2 class="product-categories__heading">{{ section.settings.heading }}</h2>
+    {% endif %}
+
+    <div class="product-categories__grid">
+      {% for block in section.blocks %}
+        <div class="category-card" {{ block.shopify_attributes }}>
+          <a href="{{ block.settings.link }}">
+            {% if block.settings.image != blank %}
+              <div class="category-card__image">
+                <img src="{{ block.settings.image | img_url: 'large' }}" alt="{{ block.settings.title | escape }}" loading="lazy">
+              </div>
+            {% else %}
+              <div class="category-card__placeholder">
+                {{ 'product-1' | placeholder_svg_tag }}
+              </div>
+            {% endif %}
+            
+            <div class="category-card__content">
+              <h3>{{ block.settings.title }}</h3>
+              {% if block.settings.description != blank %}
+                <p>{{ block.settings.description }}</p>
+              {% endif %}
+            </div>
+          </a>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Product categories",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Shop by Category"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "category",
+      "name": "Category",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Category title",
+          "default": "Mugs"
+        },
+        {
+          "type": "text",
+          "id": "description",
+          "label": "Description",
+          "default": "Funny mugs for your daily dose of caffeine"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Category image"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Category link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product categories",
+      "blocks": [
+        {
+          "type": "category",
+          "settings": {
+            "title": "Mugs",
+            "description": "Funny mugs for healthcare heroes"
+          }
+        },
+        {
+          "type": "category",
+          "settings": {
+            "title": "T-Shirts",
+            "description": "Trendy tees with memorable sayings"
+          }
+        },
+        {
+          "type": "category",
+          "settings": {
+            "title": "Accessories",
+            "description": "More cool items for HCPs"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

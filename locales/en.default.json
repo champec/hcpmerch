@@ -8,12 +8,12 @@
   },
   "sections": {
     "header": {
-      "menu": "Menu"
+      "menu": "Shop"
     },
     "footer": {
-      "newsletter_title": "Subscribe to our newsletter",
-      "newsletter_placeholder": "Email address",
-      "newsletter_button": "Subscribe",
+      "newsletter_title": "Get the latest healthcare humor & new designs",
+      "newsletter_placeholder": "Your email address",
+      "newsletter_button": "Join the crew",
       "all_rights_reserved": "All rights reserved"
     },
     "cart": {

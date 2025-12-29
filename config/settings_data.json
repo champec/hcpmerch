@@ -1,8 +1,9 @@
 {
   "current": {
-    "color_primary": "#1a1a1a",
+    "color_primary": "#0066cc",
     "color_secondary": "#ffffff",
-    "color_accent": "#2a7fff",
+    "color_accent": "#ff6b6b",
+    "color_text": "#2d3748",
     "sections": {
       "header": {
         "type": "header",

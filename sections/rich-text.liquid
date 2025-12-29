@@ -1,0 +1,83 @@
+{% comment %}
+  Renders a rich text section with content
+{% endcomment %}
+
+<div class="rich-text section-{{ section.id }}-padding">
+  <div class="rich-text__wrapper">
+    {% if section.settings.heading != blank %}
+      <h2 class="rich-text__heading">{{ section.settings.heading }}</h2>
+    {% endif %}
+    
+    {% if section.settings.text != blank %}
+      <div class="rich-text__text">
+        {{ section.settings.text }}
+      </div>
+    {% endif %}
+
+    {% if section.settings.show_features %}
+      <div class="rich-text__features">
+        <div class="feature">
+          <h3>🎨 Custom Designs</h3>
+          <p>Unique sayings that only healthcare professionals understand</p>
+        </div>
+        <div class="feature">
+          <h3>🚚 Fast Delivery</h3>
+          <p>Print-on-demand with Gelato ensures quick UK delivery</p>
+        </div>
+        <div class="feature">
+          <h3>💯 Quality Guaranteed</h3>
+          <p>Premium mugs, t-shirts, and accessories that last</p>
+        </div>
+      </div>
+    {% endif %}
+
+    {% if section.settings.button_label != blank %}
+      <a href="{{ section.settings.button_link }}" class="button">
+        {{ section.settings.button_label }}
+      </a>
+    {% endif %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Rich text",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Rich text"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Text",
+      "default": "<p>Share information about your brand with your customers.</p>"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_features",
+      "label": "Show feature highlights",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Rich text"
+    }
+  ]
+}
+{% endschema %}

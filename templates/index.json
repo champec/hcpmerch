@@ -3,15 +3,23 @@
     "image_banner": {
       "type": "image-banner",
       "settings": {
-        "heading": "Welcome to HCP Merch"
+        "heading": "Trendy Merch for Healthcare Heroes",
+        "text": "Mugs, T-shirts & more with memorable sayings that only HCPs understand"
       }
     },
     "featured_collection": {
       "type": "featured-collection",
       "settings": {
-        "heading": "Featured products"
+        "heading": "Trending Products",
+        "products_to_show": 8
+      }
+    },
+    "info_section": {
+      "type": "rich-text",
+      "settings": {
+        "heading": "Made for UK Healthcare Professionals"
       }
     }
   },
-  "order": ["image_banner", "featured_collection"]
+  "order": ["image_banner", "featured_collection", "info_section"]
 }
